@@ -34,3 +34,16 @@ export interface AppInfo {
 	TimeStartLockedFormatted: string | undefined;
 	TimeEndLockedFormatted: string | undefined;
 }
+
+export interface ActivityInfo {
+	ID: string;
+	Name: string;
+	PackageName: string;
+	Icon: string;
+	Description: {
+		String: string;
+		Valid: boolean;
+	};
+	DeviceID: string;
+	CreatedAt: string;
+}
