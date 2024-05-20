@@ -17,7 +17,20 @@ export interface AppInfo {
 	LockStatus: boolean;
 	Icon: string;
 	TimeUsage: number;
-	DateLocked: string;
-	TimeStartLocked: string;
-	TimeEndLocked: string;
+	DateLocked: {
+		String: string;
+		Valid: boolean;
+	};
+	TimeStartLocked: {
+		String: string;
+		Valid: boolean;
+	};
+	TimeEndLocked: {
+		String: string;
+		Valid: boolean;
+	};
+
+	DateLockedFormatted: string | undefined;
+	TimeStartLockedFormatted: string | undefined;
+	TimeEndLockedFormatted: string | undefined;
 }
