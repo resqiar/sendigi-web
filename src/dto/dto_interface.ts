@@ -17,17 +17,7 @@ export interface AppInfo {
 	LockStatus: boolean;
 	Icon: string;
 	TimeUsage: number;
-	DateLocked: {
-		String: string;
-		Valid: boolean;
-	};
-	TimeStartLocked: {
-		String: string;
-		Valid: boolean;
-	};
-	TimeEndLocked: {
-		String: string;
-		Valid: boolean;
-	};
-	AuthorID: string;
+	DateLocked: string;
+	TimeStartLocked: string;
+	TimeEndLocked: string;
 }
