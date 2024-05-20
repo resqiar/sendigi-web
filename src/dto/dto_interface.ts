@@ -9,3 +9,25 @@ export interface DeviceInfo {
 	BatteryLevel: number;
 	IsCharging: boolean;
 }
+
+export interface AppInfo {
+	ID: string;
+	Name: string;
+	PackageName: string;
+	LockStatus: boolean;
+	Icon: string;
+	TimeUsage: number;
+	DateLocked: {
+		String: string;
+		Valid: boolean;
+	};
+	TimeStartLocked: {
+		String: string;
+		Valid: boolean;
+	};
+	TimeEndLocked: {
+		String: string;
+		Valid: boolean;
+	};
+	AuthorID: string;
+}
