@@ -1,7 +1,6 @@
 <script lang="ts">
     import MainSidebar from "../sidebar/MainSidebar.svelte";
     import type { ActivityInfo } from "../../dto/dto_interface";
-    import "flatpickr/dist/flatpickr.css";
     import { Badge, Card } from "flowbite-svelte";
 
     export let data: ActivityInfo[];

@@ -66,7 +66,7 @@
                         />
                     </svelte:fragment>
                 </SidebarItem>
-                <SidebarItem label="Notifications" href="/notifications">
+                <SidebarItem label="Notifications" href="/notification">
                     <svelte:fragment slot="icon">
                         <BellRingSolid
                             class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"

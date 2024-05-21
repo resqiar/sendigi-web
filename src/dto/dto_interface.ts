@@ -1,3 +1,10 @@
+export interface UserProfile {
+	ID: string;
+	Username: string;
+	Email: string;
+	PictureURL: string;
+}
+
 export interface DeviceInfo {
 	ID: string;
 	DeviceName: string;
@@ -46,4 +53,21 @@ export interface ActivityInfo {
 	};
 	DeviceID: string;
 	CreatedAt: string;
+}
+
+export interface NotificationConfig {
+	ID: number;
+	Email: string;
+	EmailStatus: boolean;
+	Whatsapp: {
+		String: string;
+		Valid: boolean;
+	};
+	WhatsappStatus: boolean;
+	Telegram: {
+		String: string;
+		Valid: boolean;
+	};
+	TelegramStatus: boolean;
+	Strategy: string;
 }
