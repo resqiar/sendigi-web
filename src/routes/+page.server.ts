@@ -8,7 +8,7 @@ export async function load({ fetch, cookies }: ServerLoadEvent) {
 	console.log(session_id);
 
 	try {
-		const userReq = await fetch(`${PUBLIC_HTTP_SERVER}/user/profile`, { credentials: "include" });
+		const userReq = await fetch(`${PUBLIC_HTTP_SERVER}/user/profile`);
 
 		if (!userReq.ok) {
 			throw Error();
