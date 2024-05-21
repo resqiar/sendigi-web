@@ -43,11 +43,12 @@
         dataset.datasets[0].data = [];
 
         for (let i = 0; i < data.length; i++) {
-            const [_, minute] = convertToHourMinute(data[i].TimeUsage);
+            const [hour, minute] = convertToHourMinute(data[i].TimeUsage);
+            const decimalPoint = convertToDecimal(hour, minute);
 
             dataset.labels.push(data[i].Name as never);
             dataset.images.push(data[i].Icon as never);
-            dataset.datasets[0].data.push(minute as never);
+            dataset.datasets[0].data.push(decimalPoint as never);
 
             // trigger updating
             dataset.labels = dataset.labels;
@@ -60,6 +61,11 @@
         const hour = time / 60;
         const minute = time % 60;
         return [hour, minute];
+    }
+
+    function convertToDecimal(hours: number, minutes: number): string {
+        const decimalHours = (hours + minutes) / 60;
+        return decimalHours.toFixed(2);
     }
 </script>
 
