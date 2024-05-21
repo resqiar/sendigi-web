@@ -64,7 +64,8 @@
     }
 
     function convertToMinutes(hours: number, minutes: number): string {
-        return (hours * 60 + minutes).toString();
+        let fixedHour = parseInt(hours.toFixed(0));
+        return (fixedHour * 60 + minutes).toString();
     }
 </script>
 
