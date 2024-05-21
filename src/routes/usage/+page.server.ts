@@ -1,4 +1,4 @@
-import { PUBLIC_HTTP_SERVER } from '$env/static/public';
+import { PUBLIC_HTTP_SERVER, PUBLIC_SENDIGI_LEGACY } from '$env/static/public';
 import { redirect, type ServerLoadEvent } from '@sveltejs/kit';
 import type { UserProfile } from '../../dto/dto_interface';
 
@@ -16,7 +16,7 @@ export async function load({ fetch }: ServerLoadEvent) {
             user: res,
         };
     } catch (error) {
-        throw redirect(307, 'https://sendigi.id/LoginPage');
+        throw redirect(307, `${PUBLIC_SENDIGI_LEGACY}/login`);
     }
 }
 
