@@ -12,5 +12,5 @@
     let configData: NotificationConfig = data.data;
 </script>
 
-<MainNavbar />
+<MainNavbar userProfile={user} />
 <NotificationBody data={configData} {user} />

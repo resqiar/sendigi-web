@@ -6,8 +6,13 @@
         ActivityInfo,
         AppInfo,
         DeviceInfo,
+        UserProfile,
     } from "../dto/dto_interface";
     import { PUBLIC_HTTP_SERVER } from "$env/static/public";
+    import type { PageData } from "./$types";
+
+    export let data: PageData;
+    let userProfile: UserProfile = data.user;
 
     let deviceInfo: DeviceInfo;
     let appInfo: AppInfo[] = [];
@@ -57,5 +62,5 @@
     }
 </script>
 
-<MainNavbar />
+<MainNavbar {userProfile} />
 <DashboardBody {deviceInfo} {appInfo} {activityInfo} />

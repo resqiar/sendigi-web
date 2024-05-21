@@ -1,11 +1,14 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { PUBLIC_HTTP_SERVER } from "$env/static/public";
-    import type { DeviceInfo } from "../../dto/dto_interface";
+    import type { DeviceInfo, UserProfile } from "../../dto/dto_interface";
     import DeviceBody from "../../components/body/DeviceBody.svelte";
     import MainNavbar from "../../components/navbar/MainNavbar.svelte";
+    import type { PageData } from "../$types";
 
-    let data: DeviceInfo[] = [];
+    export let data: PageData;
+    let userProfile: UserProfile = data.user;
+    let deviceInfo: DeviceInfo[] = [];
 
     onMount(function () {
         getDeviceInfo();
@@ -25,12 +28,12 @@
 
             if (!response.ok) return;
             const raw = await response.json();
-            data = raw.data;
+            deviceInfo = raw.data;
         } catch (error) {
             console.log(error);
         }
     }
 </script>
 
-<MainNavbar />
-<DeviceBody {data} />
+<MainNavbar {userProfile} />
+<DeviceBody data={deviceInfo} />

@@ -1,8 +1,20 @@
-<script>
-    import { Navbar, NavBrand } from "flowbite-svelte";
+<script lang="ts">
+    import { Avatar, Navbar, NavBrand, Select } from "flowbite-svelte";
+    import type { UserProfile } from "../../dto/dto_interface";
+
+    export let userProfile: UserProfile;
+
+    let countries = [
+        { value: 1000, name: "1 Second" },
+        { value: 1000 * 5, name: "5 Seconds" },
+        { value: 1000 * 10, name: "10 Seconds" },
+        { value: 1000 * 30, name: "30 Seconds" },
+        { value: 1000 * 60, name: "1 Minute" },
+        { value: 1000 * 60 * 5, name: "5 Minutes" },
+    ];
 </script>
 
-<Navbar class="py-6">
+<Navbar class="py-6 mb-4">
     <NavBrand href="/">
         <img
             src="https://sendigi.id/logosendigi.png"
@@ -14,4 +26,9 @@
             >SenDigi</span
         >
     </NavBrand>
+
+    <div class="flex items-center gap-6 md:order-2">
+        <Select placeholder="Refresh Time" items={countries} />
+        <Avatar id="avatar-menu" src={userProfile.PictureURL} />
+    </div>
 </Navbar>

@@ -83,7 +83,7 @@
     <main
         class="grid md:grid-cols-3 gap-3 auto-rows-fr items-center flex-1 mr-24 mb-24"
     >
-        <Card href="/cards" class="h-min">
+        <Card href="/device" class="h-min">
             <p class="text-sm text-gray-700 dark:text-gray-400">Device Name</p>
             <h5
                 class="mt-4 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
@@ -92,7 +92,7 @@
             </h5>
         </Card>
 
-        <Card href="/cards" class="h-min">
+        <Card href="/usage" class="h-min">
             <p class="text-sm text-gray-700 dark:text-gray-400">
                 Total Installed Applications
             </p>
@@ -103,7 +103,7 @@
             </h5>
         </Card>
 
-        <Card href="/cards" class="h-min">
+        <Card href="/usage" class="h-min">
             <p class="text-sm text-gray-700 dark:text-gray-400">
                 Total Time Usage
             </p>
@@ -116,7 +116,7 @@
             </h5>
         </Card>
 
-        <Card href="/cards" class="h-full max-w-full col-span-2">
+        <Card href="/usage" class="h-full max-w-full col-span-2">
             <p class="text-sm text-gray-700 dark:text-gray-400">
                 Top Most Used Applications
             </p>
@@ -140,7 +140,7 @@
             </div>
         </Card>
 
-        <Card href="/cards" class="h-full">
+        <Card href="/device" class="h-full">
             <p class="text-sm text-gray-700 dark:text-gray-400">
                 Device Battery Level
             </p>
@@ -154,7 +154,7 @@
             </div>
         </Card>
 
-        <Card href="/cards" class="h-min">
+        <Card href="/usage" class="h-min">
             <p class="text-sm text-gray-700 dark:text-gray-400">
                 Total Locked Applications
             </p>
@@ -165,7 +165,7 @@
             </h5>
         </Card>
 
-        <Card href="/cards" class="h-full max-w-full row-span-2 col-span-1">
+        <Card href="/lock" class="h-full max-w-full row-span-2 col-span-1">
             <p class="text-sm text-gray-700 dark:text-gray-400">
                 Locked Applications
             </p>
@@ -187,7 +187,7 @@
             {/if}
         </Card>
 
-        <Card href="/cards" class="h-full max-w-full row-span-2 col-span-1">
+        <Card href="/schedule" class="h-full max-w-full row-span-2 col-span-1">
             <p class="text-sm text-gray-700 dark:text-gray-400">
                 Scheduled Applications
             </p>
@@ -231,7 +231,7 @@
             {/if}
         </Card>
 
-        <Card href="/cards" class="h-min">
+        <Card href="/schedule" class="h-min">
             <p class="text-sm text-gray-700 dark:text-gray-400">
                 Total Scheduled Applications
             </p>
@@ -242,7 +242,7 @@
             </h5>
         </Card>
 
-        <Card href="/cards" class="h-full max-w-full row-span-2 col-span-2">
+        <Card href="/activity" class="h-full max-w-full row-span-2 col-span-2">
             <p class="text-sm text-gray-700 dark:text-gray-400">
                 Last Device Activity
             </p>
@@ -275,7 +275,7 @@
             </div>
         </Card>
 
-        <Card href="/cards" class="h-full max-w-full">
+        <Card href="/activity" class="h-full max-w-full">
             <p class="text-sm text-gray-700 dark:text-gray-400">
                 Total Opened Locked Application
             </p>
@@ -286,7 +286,7 @@
             </h5>
         </Card>
 
-        <Card href="/cards" class="h-full max-w-full">
+        <Card href="/activity" class="h-full max-w-full">
             <p class="text-sm text-gray-700 dark:text-gray-400">
                 Most Opened Locked Application
             </p>

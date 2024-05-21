@@ -116,10 +116,12 @@
     <main class="flex flex-col gap-6 flex-1">
         <Card class="max-w-[90%]">
             <div class="my-4 mx-2">
-                <h1 class="font-bold text-lg">Lock Specific Application</h1>
+                <h1 class="font-bold text-lg">
+                    Schedule Date or Time to Lock Application
+                </h1>
                 <p>
-                    This page allows you to select which apps should be locked
-                    or unlocked.
+                    This page allows you to make a schedule on when to lock the
+                    application.
                 </p>
             </div>
 
