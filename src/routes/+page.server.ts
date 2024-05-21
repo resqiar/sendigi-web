@@ -2,11 +2,13 @@ import { PUBLIC_HTTP_SERVER } from '$env/static/public';
 import { redirect, type ServerLoadEvent } from '@sveltejs/kit';
 import type { UserProfile } from '../dto/dto_interface';
 
-export async function load({ fetch }: ServerLoadEvent) {
+export async function load({ fetch, cookies }: ServerLoadEvent) {
+	const session_id = cookies.get('session_id');
+
+	console.log(session_id);
+
 	try {
 		const userReq = await fetch(`${PUBLIC_HTTP_SERVER}/user/profile`, { credentials: "include" });
-
-		console.log(userReq.statusText);
 
 		if (!userReq.ok) {
 			throw Error();
