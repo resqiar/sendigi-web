@@ -64,7 +64,7 @@
     }
 
     function convertToDecimal(hours: number, minutes: number): string {
-        const decimalHours = (hours + minutes) / 60;
+        const decimalHours = hours + minutes / 60;
         return decimalHours.toFixed(2);
     }
 </script>
