@@ -29,6 +29,6 @@ export async function load({ fetch }: ServerLoadEvent) {
             user: res,
         };
     } catch (error) {
-        throw redirect(307, '/login');
+        throw redirect(307, 'https://sendigi.id/LoginPage');
     }
 }
