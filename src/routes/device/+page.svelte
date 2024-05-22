@@ -9,7 +9,7 @@
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
-    let deviceInfo: DeviceInfo[] = [];
+    let deviceInfo: DeviceInfo | undefined;
 
     let fetchInterval: number;
     SelectedRefreshTimeTemplate.subscribe((v) => {
@@ -32,7 +32,9 @@
 
             if (!response.ok) return;
             const raw = await response.json();
-            deviceInfo = raw.data;
+            if (raw.data) {
+                deviceInfo = raw.data[0];
+            }
         } catch (error) {
             console.log(error);
         }
@@ -40,4 +42,4 @@
 </script>
 
 <MainNavbar {userProfile} />
-<DeviceBody data={deviceInfo} />
+<DeviceBody device={deviceInfo} />

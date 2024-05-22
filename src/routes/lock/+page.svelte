@@ -32,7 +32,9 @@
 
             if (!response.ok) return;
             const raw = await response.json();
-            appInfo = raw.data;
+            if (raw.data) {
+                appInfo = raw.data;
+            }
         } catch (error) {
             console.log(error);
         }

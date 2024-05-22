@@ -7,7 +7,7 @@
         DeviceInfo,
     } from "../../dto/dto_interface";
 
-    export let deviceInfo: DeviceInfo;
+    export let deviceInfo: DeviceInfo | undefined;
     export let appInfo: AppInfo[];
     export let activityInfo: ActivityInfo[];
 
@@ -88,7 +88,7 @@
             <h5
                 class="mt-4 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
             >
-                {deviceInfo ? deviceInfo.DeviceName : "Loading..."}
+                {deviceInfo ? deviceInfo.DeviceName : "Loading Data..."}
             </h5>
         </Card>
 
@@ -148,7 +148,9 @@
                 <Progressbar
                     progress={deviceInfo?.BatteryLevel}
                     size="h-4"
-                    color={deviceInfo?.BatteryLevel < 20 ? "red" : "yellow"}
+                    color={deviceInfo?.BatteryLevel ?? 0 < 20
+                        ? "red"
+                        : "yellow"}
                     labelInside
                 />
             </div>

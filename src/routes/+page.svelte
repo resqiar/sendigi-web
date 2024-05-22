@@ -15,7 +15,7 @@
     export let data: PageData;
     let userProfile: UserProfile = data.user;
 
-    let deviceInfo: DeviceInfo;
+    let deviceInfo: DeviceInfo | undefined;
     let appInfo: AppInfo[] = [];
     let activityInfo: ActivityInfo[] = [];
 
@@ -51,10 +51,12 @@
                     ? (await appRes.value.json()).data
                     : [];
 
-            deviceInfo =
-                deviceRes.status === "fulfilled" && deviceRes.value.ok
-                    ? (await deviceRes.value.json()).data[0]
-                    : undefined;
+            if (deviceRes.status === "fulfilled" && deviceRes.value.ok) {
+                const value = await deviceRes.value.json();
+                if (value.data) {
+                    deviceInfo = value.data[0];
+                }
+            }
 
             activityInfo =
                 activityRes.status === "fulfilled" && activityRes.value.ok
