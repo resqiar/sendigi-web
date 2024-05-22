@@ -92,8 +92,10 @@
                     <div>
                         <Toggle
                             checked={app.LockStatus}
-                            on:change={(e) => handleCheck(e, app)}
-                            >{app.LockStatus ? "Locked" : "Unlocked"}</Toggle
+                            on:change={(e) => {
+                                app.LockStatus = e.target.checked;
+                                handleCheck(e, app);
+                            }}>{app.LockStatus ? "Locked" : "Unlocked"}</Toggle
                         >
                     </div>
                 </div>

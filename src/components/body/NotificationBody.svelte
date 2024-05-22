@@ -37,6 +37,8 @@
     let emailStatus: boolean = data.EmailStatus;
     let telegram: string = data.Telegram.String;
     let telegramStatus: boolean = data.TelegramStatus;
+    let whatsapp: string = data.Whatsapp.String;
+    let whatsappStatus: boolean = data.WhatsappStatus;
     let strategy: string = data.Strategy;
     let telegramConfirmationModal = false;
 
@@ -73,7 +75,8 @@
                     body: JSON.stringify({
                         ...data,
                         EmailStatus: emailStatus,
-                        Whatsapp: "",
+                        Whatsapp: whatsapp,
+                        WhatsappStatus: whatsappStatus,
                         Telegram: telegram,
                         TelegramStatus: telegramStatus,
                         Strategy: strategy,
@@ -130,22 +133,16 @@
                                 <InputAddon>
                                     <WhatsappSolid />
                                 </InputAddon>
-                                <Input
-                                    type="text"
-                                    value={data.Whatsapp.String}
-                                    disabled
-                                />
+                                <Input type="text" bind:value={whatsapp} />
                                 <Toggle
-                                    checked={data.WhatsappStatus}
+                                    bind:checked={whatsappStatus}
                                     class="px-4"
-                                    disabled
-                                    >{data.WhatsappStatus
-                                        ? "On"
-                                        : "Off"}</Toggle
+                                    >{whatsappStatus ? "On" : "Off"}</Toggle
                                 >
                             </ButtonGroup>
                             <Helper class="mt-2" color="green">
-                                Whatsapp is currently unavailable right now.
+                                Enter your number without +; for example
+                                6281217xxxx
                             </Helper>
                         </div>
 
