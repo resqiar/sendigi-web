@@ -22,6 +22,7 @@
         BellRingSolid,
         LockTimeSolid,
         ExclamationCircleOutline,
+        DownloadSolid,
     } from "flowbite-svelte-icons";
 
     $: activeUrl = $page.url.pathname;
@@ -92,6 +93,13 @@
                 <SidebarItem label="Notifications" href="/notification">
                     <svelte:fragment slot="icon">
                         <BellRingSolid
+                            class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        />
+                    </svelte:fragment>
+                </SidebarItem>
+                <SidebarItem label="Download Release" href="/download">
+                    <svelte:fragment slot="icon">
+                        <DownloadSolid
                             class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         />
                     </svelte:fragment>
