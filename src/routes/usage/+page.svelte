@@ -5,22 +5,26 @@
     import MainNavbar from "../../components/navbar/MainNavbar.svelte";
     import UsageBody from "../../components/body/UsageBody.svelte";
     import type { PageData } from "../$types";
+    import { SelectedRefreshTimeTemplate } from "../../stores/store";
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
     let appInfo: AppInfo[] = [];
 
-    onMount(function () {
-        getDeviceInfo();
-        const fetchInterval = setInterval(
-            async () => getDeviceInfo(),
-            1000 * 60,
-        );
+    let fetchInterval: number;
+    SelectedRefreshTimeTemplate.subscribe((v) => {
+        clearInterval(fetchInterval);
+        fetchInterval = setInterval(async () => {
+            getAppInfo();
+        }, v);
+    });
 
+    onMount(function () {
+        getAppInfo();
         return () => clearInterval(fetchInterval);
     });
 
-    async function getDeviceInfo() {
+    async function getAppInfo() {
         try {
             const response = await fetch(`${PUBLIC_HTTP_SERVER}/api/apps`, {
                 credentials: "include",

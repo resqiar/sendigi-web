@@ -10,6 +10,7 @@
     } from "../dto/dto_interface";
     import { PUBLIC_HTTP_SERVER } from "$env/static/public";
     import type { PageData } from "./$types";
+    import { SelectedRefreshTimeTemplate } from "../stores/store";
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
@@ -18,13 +19,16 @@
     let appInfo: AppInfo[] = [];
     let activityInfo: ActivityInfo[] = [];
 
+    let fetchInterval: number;
+    SelectedRefreshTimeTemplate.subscribe((v) => {
+        clearInterval(fetchInterval);
+        fetchInterval = setInterval(async () => {
+            getData();
+        }, v);
+    });
+
     onMount(function () {
         getData();
-
-        const fetchInterval = setInterval(async () => {
-            getData();
-        }, 1000 * 5);
-
         return () => clearInterval(fetchInterval);
     });
 

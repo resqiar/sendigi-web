@@ -5,18 +5,22 @@
     import DeviceBody from "../../components/body/DeviceBody.svelte";
     import MainNavbar from "../../components/navbar/MainNavbar.svelte";
     import type { PageData } from "../$types";
+    import { SelectedRefreshTimeTemplate } from "../../stores/store";
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
     let deviceInfo: DeviceInfo[] = [];
 
+    let fetchInterval: number;
+    SelectedRefreshTimeTemplate.subscribe((v) => {
+        clearInterval(fetchInterval);
+        fetchInterval = setInterval(async () => {
+            getDeviceInfo();
+        }, v);
+    });
+
     onMount(function () {
         getDeviceInfo();
-        const fetchInterval = setInterval(
-            async () => getDeviceInfo(),
-            1000 * 60,
-        );
-
         return () => clearInterval(fetchInterval);
     });
 
