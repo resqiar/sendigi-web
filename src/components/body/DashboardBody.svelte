@@ -8,8 +8,8 @@
     } from "../../dto/dto_interface";
 
     export let deviceInfo: DeviceInfo | undefined;
-    export let appInfo: AppInfo[];
-    export let activityInfo: ActivityInfo[];
+    export let appInfo: AppInfo[] = [];
+    export let activityInfo: ActivityInfo[] = [];
 
     let totalTimeUsage = 0;
     let totalLockedApps: AppInfo[] = [];

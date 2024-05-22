@@ -10,9 +10,11 @@
 
     export let data: PageData;
     let user: UserProfile = data.user;
-    let configData: NotificationConfig = data.data;
+    let configData: NotificationConfig | undefined = data.data;
 </script>
 
 <Meta title="Notifications Settings | SenDigi" />
 <MainNavbar userProfile={user} />
-<NotificationBody data={configData} {user} />
+{#if configData}
+    <NotificationBody data={configData} {user} />
+{/if}

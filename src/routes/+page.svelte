@@ -47,10 +47,12 @@
                 }),
             ]);
 
-            appInfo =
-                appRes.status === "fulfilled" && appRes.value.ok
-                    ? (await appRes.value.json()).data
-                    : [];
+            if (appRes.status === "fulfilled" && appRes.value.ok) {
+                const value = await appRes.value.json();
+                if (value.data) {
+                    appInfo = value.data[0];
+                }
+            }
 
             if (deviceRes.status === "fulfilled" && deviceRes.value.ok) {
                 const value = await deviceRes.value.json();
@@ -59,10 +61,12 @@
                 }
             }
 
-            activityInfo =
-                activityRes.status === "fulfilled" && activityRes.value.ok
-                    ? (await activityRes.value.json()).data
-                    : [];
+            if (activityRes.status === "fulfilled" && activityRes.value.ok) {
+                const value = await activityRes.value.json();
+                if (value.data) {
+                    activityInfo = value.data;
+                }
+            }
         } catch (error) {
             console.log(error);
         }

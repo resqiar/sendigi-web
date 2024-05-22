@@ -36,7 +36,9 @@
 
             if (!response.ok) return;
             const raw = await response.json();
-            activityInfo = raw.data;
+            if (raw.data) {
+                activityInfo = raw.data;
+            }
         } catch (error) {
             console.log(error);
         }
