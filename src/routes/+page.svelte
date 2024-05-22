@@ -11,6 +11,7 @@
     import { PUBLIC_HTTP_SERVER } from "$env/static/public";
     import type { PageData } from "./$types";
     import { SelectedRefreshTimeTemplate } from "../stores/store";
+    import Meta from "../components/meta/Meta.svelte";
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
@@ -68,5 +69,6 @@
     }
 </script>
 
+<Meta title="Dashboard | SenDigi" />
 <MainNavbar {userProfile} />
 <DashboardBody {deviceInfo} {appInfo} {activityInfo} />

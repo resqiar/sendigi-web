@@ -6,6 +6,7 @@
     import UsageBody from "../../components/body/UsageBody.svelte";
     import type { PageData } from "../$types";
     import { SelectedRefreshTimeTemplate } from "../../stores/store";
+    import Meta from "../../components/meta/Meta.svelte";
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
@@ -39,5 +40,6 @@
     }
 </script>
 
+<Meta title="Time Usage | SenDigi" />
 <MainNavbar {userProfile} />
 <UsageBody data={appInfo} />

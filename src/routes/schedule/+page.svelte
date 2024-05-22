@@ -6,6 +6,7 @@
     import ScheduleBody from "../../components/body/ScheduleBody.svelte";
     import type { PageData } from "../$types";
     import { SelectedRefreshTimeTemplate } from "../../stores/store";
+    import Meta from "../../components/meta/Meta.svelte";
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
@@ -39,5 +40,6 @@
     }
 </script>
 
+<Meta title="Schedule Application | SenDigi" />
 <MainNavbar {userProfile} />
 <ScheduleBody data={appInfo} />

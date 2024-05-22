@@ -6,6 +6,7 @@
     import LockBody from "../../components/body/LockBody.svelte";
     import type { PageData } from "../$types";
     import { SelectedRefreshTimeTemplate } from "../../stores/store";
+    import Meta from "../../components/meta/Meta.svelte";
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
@@ -41,5 +42,6 @@
     }
 </script>
 
+<Meta title="Lock Application | SenDigi" />
 <MainNavbar {userProfile} />
 <LockBody data={appInfo} />

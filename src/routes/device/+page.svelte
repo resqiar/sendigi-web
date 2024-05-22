@@ -6,6 +6,7 @@
     import MainNavbar from "../../components/navbar/MainNavbar.svelte";
     import type { PageData } from "../$types";
     import { SelectedRefreshTimeTemplate } from "../../stores/store";
+    import Meta from "../../components/meta/Meta.svelte";
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
@@ -41,5 +42,6 @@
     }
 </script>
 
+<Meta title="Device Information | SenDigi" />
 <MainNavbar {userProfile} />
 <DeviceBody device={deviceInfo} />
