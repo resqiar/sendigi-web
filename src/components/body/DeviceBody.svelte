@@ -80,16 +80,18 @@
                             <div>
                                 <p class="text-xs">Battery Level:</p>
                                 <div class="py-2">
-                                    <Progressbar
-                                        progress={device
-                                            ? device.BatteryLevel
-                                            : 0}
-                                        size="h-4"
-                                        color={device?.BatteryLevel ?? 0 < 20
-                                            ? "red"
-                                            : "yellow"}
-                                        labelInside
-                                    />
+                                    {#if device}
+                                        <Progressbar
+                                            progress={device.BatteryLevel}
+                                            size="h-4"
+                                            color={device.BatteryLevel < 20
+                                                ? "red"
+                                                : "yellow"}
+                                            labelInside
+                                        />
+                                    {:else}
+                                        <p class="text-xs">Loading data...</p>
+                                    {/if}
                                 </div>
                             </div>
 

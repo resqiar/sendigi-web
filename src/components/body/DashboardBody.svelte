@@ -145,14 +145,16 @@
                 Device Battery Level
             </p>
             <div class="mt-4">
-                <Progressbar
-                    progress={deviceInfo?.BatteryLevel}
-                    size="h-4"
-                    color={deviceInfo?.BatteryLevel ?? 0 < 20
-                        ? "red"
-                        : "yellow"}
-                    labelInside
-                />
+                {#if deviceInfo}
+                    <Progressbar
+                        progress={deviceInfo.BatteryLevel}
+                        size="h-4"
+                        color={deviceInfo.BatteryLevel < 20 ? "red" : "yellow"}
+                        labelInside
+                    />
+                {:else}
+                    <p class="text-xs">Loading data...</p>
+                {/if}
             </div>
         </Card>
 
