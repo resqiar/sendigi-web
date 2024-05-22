@@ -99,7 +99,7 @@
             <h5
                 class="mt-4 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
             >
-                {appInfo?.length} Applications
+                {appInfo.length} Applications
             </h5>
         </Card>
 
@@ -120,24 +120,28 @@
             <p class="text-sm text-gray-700 dark:text-gray-400">
                 Top Most Used Applications
             </p>
-            <div
-                class="overflow-y-hidden flex items-center justify-evenly gap-1 mt-4"
-            >
-                {#each appInfo.slice(0, 4) as app}
-                    <div class="flex items-center gap-2">
-                        <img src={app.Icon} alt="icon" width="20" />
-                        <div>
-                            <p class="text-sm font-semibold">{app.Name}</p>
-                            <p class="text-xs">
-                                {convertToHourMinute(app.TimeUsage)[0].toFixed(
-                                    0,
-                                )} Hours {convertToHourMinute(app.TimeUsage)[1]}
-                                Minutes
-                            </p>
+            {#if appInfo}
+                <div
+                    class="overflow-y-hidden flex items-center justify-evenly gap-1 mt-4"
+                >
+                    {#each appInfo.slice(0, 4) as app}
+                        <div class="flex items-center gap-2">
+                            <img src={app.Icon} alt="icon" width="20" />
+                            <div>
+                                <p class="text-sm font-semibold">{app.Name}</p>
+                                <p class="text-xs">
+                                    {convertToHourMinute(
+                                        app.TimeUsage,
+                                    )[0].toFixed(0)} Hours {convertToHourMinute(
+                                        app.TimeUsage,
+                                    )[1]}
+                                    Minutes
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                {/each}
-            </div>
+                    {/each}
+                </div>
+            {/if}
         </Card>
 
         <Card href="/device" class="h-full">

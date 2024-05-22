@@ -50,7 +50,7 @@
             if (appRes.status === "fulfilled" && appRes.value.ok) {
                 const value = await appRes.value.json();
                 if (value.data) {
-                    appInfo = value.data[0];
+                    appInfo = value.data;
                 }
             }
 
