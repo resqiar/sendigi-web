@@ -35,10 +35,38 @@
                 </p>
             </div>
 
+            <div class="px-4 my-2 mb-6">
+                <div class="flex gap-2 items-center">
+                    <h1 class="font-bold text-lg">v1.2-beta</h1>
+                    <Badge color="purple">Latest Release</Badge>
+                </div>
+
+                <div class="mt-2">
+                    <p class="font-semibold">What's Changed?</p>
+                    <ul class="list-disc px-6 py-2">
+                        <li>
+                            fix: fix not working time scheduler when done in the
+                            app
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-4">
+                    <Button
+                        href="https://github.com/resqiar/sendigi-app/releases/tag/v1.2-beta"
+                        size="sm"
+                        color="alternative">See Full Release</Button
+                    >
+                    <Button
+                        href="https://github.com/resqiar/sendigi-app/releases/download/v1.2-beta/sendigi-release-v1.2.apk"
+                        size="sm">Download Release</Button
+                    >
+                </div>
+            </div>
+
             <div class="px-4 my-2">
                 <div class="flex gap-2 items-center">
                     <h1 class="font-bold text-lg">v1.1-beta</h1>
-                    <Badge color="purple">Latest Release</Badge>
                 </div>
 
                 <div class="mt-2">
@@ -47,7 +75,6 @@
                         <li>Refactor Lock UI by @nathanpasca in #13</li>
                         <li>Refactor English by @nathanpasca in #15 Full</li>
                     </ul>
-                    <p></p>
                 </div>
 
                 <div class="mt-4">
@@ -58,6 +85,7 @@
                     >
                     <Button
                         href="https://github.com/resqiar/sendigi-app/releases/download/v1.1-beta/sendigi-release.apk"
+                        color="alternative"
                         size="sm">Download Release</Button
                     >
                 </div>
