@@ -71,7 +71,7 @@
     }
 
     function convertToHourMinute(time: number): [number, number] {
-        const hour = time / 60;
+        const hour = Math.floor(time / 60);
         const minute = time % 60;
         return [hour, minute];
     }
@@ -110,7 +110,7 @@
             <h5
                 class="mt-4 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
             >
-                {convertToHourMinute(totalTimeUsage)[0].toFixed(0)} Hours {convertToHourMinute(
+                {convertToHourMinute(totalTimeUsage)[0]} Hours {convertToHourMinute(
                     totalTimeUsage,
                 )[1]} Minutes
             </h5>
@@ -130,11 +130,8 @@
                             <div>
                                 <p class="text-sm font-semibold">{app.Name}</p>
                                 <p class="text-xs">
-                                    {convertToHourMinute(
-                                        app.TimeUsage,
-                                    )[0].toFixed(0)} Hours {convertToHourMinute(
-                                        app.TimeUsage,
-                                    )[1]}
+                                    {convertToHourMinute(app.TimeUsage)[0]} Hours
+                                    {convertToHourMinute(app.TimeUsage)[1]}
                                     Minutes
                                 </p>
                             </div>

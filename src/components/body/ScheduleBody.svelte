@@ -22,7 +22,7 @@
     let counter: number = 6;
 
     function convertToHourMinute(time: number): [number, number] {
-        const hour = time / 60;
+        const hour = Math.floor(time / 60);
         const minute = time % 60;
         return [hour, minute];
     }
@@ -159,7 +159,7 @@
                                     <p class="text-sm">
                                         Today's time usage: {convertToHourMinute(
                                             app.TimeUsage,
-                                        )[0].toFixed(0)} Hour
+                                        )[0]} Hour
                                         {convertToHourMinute(app.TimeUsage)[1]} Minute
                                     </p>
                                 </div>
