@@ -71,3 +71,15 @@ export interface NotificationConfig {
 	TelegramStatus: boolean;
 	Strategy: string;
 }
+
+export interface RequestMessage {
+	ID: string;
+	Name: string;
+	PackageName: string;
+	Icon: string;
+	Message: string;
+	LockStatus: boolean;
+	Ack: boolean;
+	DeviceID: string;
+	CreatedAt: string;
+}

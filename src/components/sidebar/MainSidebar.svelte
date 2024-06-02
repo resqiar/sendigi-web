@@ -23,6 +23,7 @@
         LockTimeSolid,
         ExclamationCircleOutline,
         DownloadSolid,
+        MessageCaptionSolid,
     } from "flowbite-svelte-icons";
 
     $: activeUrl = $page.url.pathname;
@@ -86,6 +87,13 @@
                 <SidebarItem label="Device Activity History" href="/activity">
                     <svelte:fragment slot="icon">
                         <FileChartBarSolid
+                            class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        />
+                    </svelte:fragment>
+                </SidebarItem>
+                <SidebarItem label="Message Requests" href="/request">
+                    <svelte:fragment slot="icon">
+                        <MessageCaptionSolid
                             class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         />
                     </svelte:fragment>

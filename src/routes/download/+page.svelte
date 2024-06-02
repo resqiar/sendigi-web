@@ -37,8 +37,37 @@
 
             <div class="px-4 my-2 mb-6">
                 <div class="flex gap-2 items-center">
-                    <h1 class="font-bold text-lg">v1.2-beta</h1>
+                    <h1 class="font-bold text-lg">v1.3-beta</h1>
                     <Badge color="purple">Latest Release</Badge>
+                </div>
+
+                <div class="mt-2">
+                    <p class="font-semibold">What's Changed?</p>
+                    <ul class="list-disc px-6 py-2">
+                        <li>
+                            Feat: App now capable to request to unlock when
+                            showing lock screen
+                        </li>
+                        <li>Unlock Request UI by @nathanpasca in #16</li>
+                    </ul>
+                </div>
+
+                <div class="mt-4">
+                    <Button
+                        href="https://github.com/resqiar/sendigi-app/releases/tag/v1.3-beta"
+                        size="sm"
+                        color="alternative">See Full Release</Button
+                    >
+                    <Button
+                        href="https://github.com/resqiar/sendigi-app/releases/download/v1.3-beta/sendigi-release-v1.3.apk"
+                        size="sm">Download Release</Button
+                    >
+                </div>
+            </div>
+
+            <div class="px-4 my-2 mb-6">
+                <div class="flex gap-2 items-center">
+                    <h1 class="font-bold text-lg">v1.2-beta</h1>
                 </div>
 
                 <div class="mt-2">
@@ -59,6 +88,7 @@
                     >
                     <Button
                         href="https://github.com/resqiar/sendigi-app/releases/download/v1.2-beta/sendigi-release-v1.2.apk"
+                        color="alternative"
                         size="sm">Download Release</Button
                     >
                 </div>
