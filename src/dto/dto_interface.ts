@@ -40,6 +40,7 @@ export interface AppInfo {
 	DateLockedFormatted: string | undefined;
 	TimeStartLockedFormatted: string | undefined;
 	TimeEndLockedFormatted: string | undefined;
+	Recurring: string;
 }
 
 export interface ActivityInfo {

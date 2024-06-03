@@ -1,7 +1,7 @@
 <script lang="ts">
     import MainSidebar from "../sidebar/MainSidebar.svelte";
     import type { AppInfo } from "../../dto/dto_interface";
-    import { Badge, Button, Card, Toast } from "flowbite-svelte";
+    import { Badge, Button, Card, Select, Toast } from "flowbite-svelte";
     import { PUBLIC_HTTP_SERVER } from "$env/static/public";
     import { Accordion, AccordionItem } from "flowbite-svelte";
     import {
@@ -20,6 +20,11 @@
     let successOpen: boolean = false;
     let successResetOpen: boolean = false;
     let counter: number = 6;
+    let recurringTemplate = [
+        { value: "TIME", name: "Repeat time only (default)" },
+        { value: "DATE", name: "Repeat Dates" },
+        { value: "DAY", name: "Repeat Days" },
+    ];
 
     function convertToHourMinute(time: number): [number, number] {
         const hour = Math.floor(time / 60);
@@ -64,6 +69,7 @@
                         DateLocked: "",
                         TimeStartLocked: "",
                         TimeEndLocked: "",
+                        Recurring: "TIME",
                     }),
                     credentials: "include",
                 },
@@ -94,6 +100,7 @@
                         DateLocked: app.DateLockedFormatted,
                         TimeStartLocked: app.TimeStartLockedFormatted,
                         TimeEndLocked: app.TimeEndLockedFormatted,
+                        Recurring: app.Recurring,
                     }),
                     credentials: "include",
                 },
@@ -273,6 +280,25 @@
                                         </div>
                                     </div>
 
+                                    <div class="mt-6">
+                                        <h2 class="font-semibold text-lg">
+                                            Recurring Scheduler?
+                                        </h2>
+                                        <p class="text-sm">
+                                            Set the scheduler to be recurring by
+                                            setting it to repeat every specified
+                                            dates or days.
+                                        </p>
+
+                                        <div class="w-full my-2">
+                                            <Select
+                                                class="mt-2"
+                                                items={recurringTemplate}
+                                                bind:value={app.Recurring}
+                                            />
+                                        </div>
+                                    </div>
+
                                     <div
                                         class="flex gap-2 mt-6 mb-4 w-full justify-end"
                                     >
@@ -280,6 +306,7 @@
                                             <Button
                                                 color="alternative"
                                                 on:click={() => {
+                                                    app.LockStatus = false;
                                                     app.DateLocked.String = "";
                                                     app.TimeStartLocked.String =
                                                         "";
@@ -291,6 +318,7 @@
                                                         "";
                                                     app.TimeEndLockedFormatted =
                                                         "";
+                                                    app.Recurring = "TIME";
                                                     handleReset(app);
                                                 }}>Reset Input</Button
                                             >
