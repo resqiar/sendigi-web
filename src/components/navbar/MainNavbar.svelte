@@ -1,7 +1,12 @@
 <script lang="ts">
     import { Avatar, Navbar, NavBrand, Select } from "flowbite-svelte";
-    import type { UserProfile } from "../../dto/dto_interface";
-    import { SelectedRefreshTimeTemplate } from "../../stores/store";
+    import type { DeviceInfo, UserProfile } from "../../dto/dto_interface";
+    import {
+        DeviceTemplate,
+        SelectedRefreshTimeTemplate,
+    } from "../../stores/store";
+    import { onMount } from "svelte";
+    import { PUBLIC_HTTP_SERVER } from "$env/static/public";
 
     export let userProfile: UserProfile;
     let selected: number;
@@ -17,6 +22,42 @@
         { value: 1000 * 60, name: "1 Minute" },
         { value: 1000 * 60 * 5, name: "5 Minutes" },
     ];
+
+    let deviceIdTemplate: { value: any; name: any }[] = [];
+    let selectedDevice: string;
+
+    DeviceTemplate.subscribe((v) => (selectedDevice = v));
+    $: DeviceTemplate.set(selectedDevice);
+
+    onMount(function () {
+        getDeviceInfo();
+    });
+
+    async function getDeviceInfo() {
+        try {
+            const response = await fetch(`${PUBLIC_HTTP_SERVER}/api/devices`, {
+                credentials: "include",
+            });
+
+            if (!response.ok) return;
+            const raw = await response.json();
+            if (raw.data) {
+                for (let i = 0; i < raw.data.length; i++) {
+                    const value: DeviceInfo = raw.data[i];
+                    deviceIdTemplate.push({
+                        value: value.ID,
+                        name: `${value.DeviceName} - (${value.ID})`,
+                    });
+                }
+                deviceIdTemplate = deviceIdTemplate;
+                if (deviceIdTemplate.length) {
+                    DeviceTemplate.set(deviceIdTemplate[0].value);
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 </script>
 
 <Navbar class="py-6 mb-4">
@@ -32,12 +73,22 @@
         >
     </NavBrand>
 
-    <div class="flex items-center gap-6 md:order-2">
-        <Select
-            placeholder="Refresh Time"
-            items={refreshTimeTemplate}
-            bind:value={selected}
-        />
+    <div class="flex items-center gap-6">
+        <div class="flex gap-2">
+            <Select
+                placeholder="Devices"
+                items={deviceIdTemplate}
+                bind:value={selectedDevice}
+                class="w-[300px]"
+            />
+
+            <Select
+                placeholder="Refresh Time"
+                items={refreshTimeTemplate}
+                bind:value={selected}
+            />
+        </div>
+
         <Avatar id="avatar-menu" src={userProfile.PictureURL} />
     </div>
 </Navbar>

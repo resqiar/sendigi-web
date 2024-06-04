@@ -5,31 +5,43 @@
     import MainNavbar from "../../components/navbar/MainNavbar.svelte";
     import ScheduleBody from "../../components/body/ScheduleBody.svelte";
     import type { PageData } from "../$types";
-    import { SelectedRefreshTimeTemplate } from "../../stores/store";
+    import {
+        DeviceTemplate,
+        SelectedRefreshTimeTemplate,
+    } from "../../stores/store";
     import Meta from "../../components/meta/Meta.svelte";
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
     let appInfo: AppInfo[] = [];
+    let device: string;
+
+    DeviceTemplate.subscribe((deviceId) => {
+        device = deviceId;
+        getAppInfo(device);
+    });
 
     let fetchInterval: number;
     SelectedRefreshTimeTemplate.subscribe((v) => {
         clearInterval(fetchInterval);
         fetchInterval = setInterval(async () => {
-            getAppInfo();
+            getAppInfo(device);
         }, v);
     });
 
     onMount(function () {
-        getAppInfo();
+        getAppInfo(device);
         return () => clearInterval(fetchInterval);
     });
 
-    async function getAppInfo() {
+    async function getAppInfo(deviceId: string) {
         try {
-            const response = await fetch(`${PUBLIC_HTTP_SERVER}/api/apps`, {
-                credentials: "include",
-            });
+            const response = await fetch(
+                `${PUBLIC_HTTP_SERVER}/api/apps?device_id=${deviceId}`,
+                {
+                    credentials: "include",
+                },
+            );
 
             if (!response.ok) return;
             const raw = await response.json();

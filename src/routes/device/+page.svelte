@@ -10,7 +10,7 @@
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
-    let deviceInfo: DeviceInfo | undefined;
+    let deviceInfo: DeviceInfo[];
 
     let fetchInterval: number;
     SelectedRefreshTimeTemplate.subscribe((v) => {
@@ -34,7 +34,7 @@
             if (!response.ok) return;
             const raw = await response.json();
             if (raw.data) {
-                deviceInfo = raw.data[0];
+                deviceInfo = raw.data;
             }
         } catch (error) {
             console.log(error);
@@ -44,4 +44,4 @@
 
 <Meta title="Device Information | SenDigi" />
 <MainNavbar {userProfile} />
-<DeviceBody device={deviceInfo} />
+<DeviceBody devices={deviceInfo} />

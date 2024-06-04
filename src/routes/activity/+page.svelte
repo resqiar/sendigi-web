@@ -5,30 +5,39 @@
     import MainNavbar from "../../components/navbar/MainNavbar.svelte";
     import ActivityBody from "../../components/body/ActivityBody.svelte";
     import type { PageData } from "../$types";
-    import { SelectedRefreshTimeTemplate } from "../../stores/store";
+    import {
+        DeviceTemplate,
+        SelectedRefreshTimeTemplate,
+    } from "../../stores/store";
     import Meta from "../../components/meta/Meta.svelte";
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
     let activityInfo: ActivityInfo[] = [];
+    let device: string;
+
+    DeviceTemplate.subscribe((deviceId) => {
+        device = deviceId;
+        getActivityInfo(device);
+    });
 
     let fetchInterval: number;
     SelectedRefreshTimeTemplate.subscribe((v) => {
         clearInterval(fetchInterval);
         fetchInterval = setInterval(async () => {
-            getActivityInfo();
+            getActivityInfo(device);
         }, v);
     });
 
     onMount(function () {
-        getActivityInfo();
+        getActivityInfo(device);
         return () => clearInterval(fetchInterval);
     });
 
-    async function getActivityInfo() {
+    async function getActivityInfo(deviceId: string) {
         try {
             const response = await fetch(
-                `${PUBLIC_HTTP_SERVER}/api/activities`,
+                `${PUBLIC_HTTP_SERVER}/api/activities?device_id=${deviceId}`,
                 {
                     credentials: "include",
                 },
@@ -38,6 +47,8 @@
             const raw = await response.json();
             if (raw.data) {
                 activityInfo = raw.data;
+            } else {
+                activityInfo = [];
             }
         } catch (error) {
             console.log(error);

@@ -56,6 +56,9 @@
                 openedAppOccurences = openedAppOccurences;
             }
         });
+    } else {
+        openedAppOccurences = new Map();
+        totalOpenedLockApplication = [];
     }
 
     $: if (openedAppOccurences.size) {
@@ -68,6 +71,8 @@
                 );
             }
         }
+    } else {
+        mostOpenedLockedApp = undefined;
     }
 
     function convertToHourMinute(time: number): [number, number] {

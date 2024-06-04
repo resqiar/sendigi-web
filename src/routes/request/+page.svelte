@@ -4,37 +4,51 @@
     import type { RequestMessage, UserProfile } from "../../dto/dto_interface";
     import MainNavbar from "../../components/navbar/MainNavbar.svelte";
     import type { PageData } from "../$types";
-    import { SelectedRefreshTimeTemplate } from "../../stores/store";
+    import {
+        DeviceTemplate,
+        SelectedRefreshTimeTemplate,
+    } from "../../stores/store";
     import Meta from "../../components/meta/Meta.svelte";
     import MessageBody from "../../components/body/MessageBody.svelte";
 
     export let data: PageData;
     let userProfile: UserProfile = data.user;
     let messages: RequestMessage[] = [];
+    let device: string;
+
+    DeviceTemplate.subscribe((deviceId) => {
+        device = deviceId;
+        getAppInfo(device);
+    });
 
     let fetchInterval: number;
     SelectedRefreshTimeTemplate.subscribe((v) => {
         clearInterval(fetchInterval);
         fetchInterval = setInterval(async () => {
-            getAppInfo();
+            getAppInfo(device);
         }, v);
     });
 
     onMount(function () {
-        getAppInfo();
+        getAppInfo(device);
         return () => clearInterval(fetchInterval);
     });
 
-    async function getAppInfo() {
+    async function getAppInfo(deviceId: string) {
         try {
-            const response = await fetch(`${PUBLIC_HTTP_SERVER}/api/message`, {
-                credentials: "include",
-            });
+            const response = await fetch(
+                `${PUBLIC_HTTP_SERVER}/api/message/${deviceId}`,
+                {
+                    credentials: "include",
+                },
+            );
 
             if (!response.ok) return;
             const raw = await response.json();
             if (raw.data) {
                 messages = raw.data;
+            } else {
+                messages = [];
             }
         } catch (error) {
             console.log(error);

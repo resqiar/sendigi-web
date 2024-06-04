@@ -21,6 +21,7 @@
     } from "flowbite-svelte-icons";
     import { slide } from "svelte/transition";
     import { PUBLIC_HTTP_SERVER } from "$env/static/public";
+    import { DeviceTemplate } from "../../stores/store";
 
     export let data: RequestMessage[];
     let messageValue: string;
@@ -45,7 +46,13 @@
         successOpen = false;
     }
 
+    let device: string;
+    DeviceTemplate.subscribe((deviceId) => {
+        device = deviceId;
+    });
+
     async function triggerUpdate(data: RequestMessage) {
+        if (!device) return;
         try {
             const response = await fetch(
                 `${PUBLIC_HTTP_SERVER}/api/message/send`,
@@ -58,6 +65,7 @@
                         message: messageValue,
                         packageName: data.PackageName,
                         lockStatus: data.LockStatus,
+                        deviceId: device,
                     }),
                     credentials: "include",
                 },

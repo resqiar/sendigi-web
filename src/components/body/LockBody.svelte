@@ -5,6 +5,7 @@
     import { PUBLIC_HTTP_SERVER } from "$env/static/public";
     import { BugSolid } from "flowbite-svelte-icons";
     import { slide } from "svelte/transition";
+    import { DeviceTemplate } from "../../stores/store";
 
     export let data: AppInfo[];
     let open: boolean = false;
